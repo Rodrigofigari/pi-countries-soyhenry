@@ -1,0 +1,48 @@
+1. Strict Mode lo podemos sacar
+2. Vamos a usar react-router ? importo un router (Browser) y envuelvo mi app en el router
+3. Defino rutas y que se va a renderizar en cada una
+3.1 App => definir los <Route path = {}/> -> Path propiedad obligatoria
+
+4. crear componente de la pag inicial
+
+*********************TEORIA DE COMPONENTES Y CICLO DE VIDA***************
+
+// COMPONENTE DE CLASE
+// class Home extends React.Component {
+// constructor(props){
+//     super(props); HAY Q PONERLE SIEMPRE EL PROPS PORQUE NO SABEMOS SI NOS VAN A VENIR O NO. HAY QUE DEJARLO PREPARADO POR LAS DUDAS
+//     this.state = {
+//         name: ""
+//     }
+// }
+
+// this.setState para modificar el estado -> aca modifico el estado completo al contrario que componentes funcionales que declaramos los state por separado
+
+// Si recibo props pero no quiero manejarlo en un estado interno, solo hago: this.prop.loquesea
+
+//   render() {
+//     return (
+//       <>
+//         <h1>Home</h1>
+//       </>
+//     );
+//   }
+// }
+
+// CICLO DE VIDA DE UN COMPONENTE
+//1. CONTRUCTOR
+//2. RENDER RETURN EN FUNCION COMPONENT
+//3. COMPONENTEDIDMOUNT // useEffect(()=>{},[])
+
+// POSIBLES CAMBIOS
+// HUBO UN CAMBIO EN UN VALOR DE UNA PROP? GUBO UN CAMBIO EN UN ESTADO?
+// HUBO UN FORCEUPDATE()?
+
+// UPDATE , SI ES QUE PASO ALGUNA DE LAS DE LAS 3 INTANCEAS MENCIONADAS ANTERIORMENTE
+// 1. SHOULDCOMPONENTEUPDATE -> DEVUELVE UN BOOLEANO (TRUE/FALSE) -> SI LO TENEMOS DEFINIDO. SINO SIEMPRE DEVUELVE TRUE (SOLO COMPONENTES DE CLASES)
+// 2. RENDER() -> SE VUELVE A EJECUTAR SI TUVE UN CAMBIO DETRO DE UNA PROP O UN ESTADO INTERNO  -- NO SE VUELVE A EJECUTAR EL CONSTRUCTOR!! (SE EJECUTA SOLO UNA VEZ AL PRINCIPIO)
+// 3. DIDCOMPONENTEUPDATE (CLASE) - EN useEffect podria ponerlo en la dependencia []
+
+// SI EL COMPONENTE VA A DESAPAREER DEL DOM -> COMPONENTWILLUNMOUNT() (CLASE) // useEffect(()=>return()=>{}) SE VA A EJECUTAR LO QUE TENGA EN EL RETURN, EL CUAL ES UNA FUNCION QUE CORTA LA EJECUCION DEL useEffect()
+
+// minuto 1.28

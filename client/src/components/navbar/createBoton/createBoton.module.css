@@ -1,0 +1,21 @@
+.btn {
+  padding: 22px;
+  margin-left: 100px;
+  border-radius: 15px;
+  background-color: #c9d7d7;
+  border: none;
+  font-size: large;
+  text-decoration: none;
+  color: black;
+}
+
+.btn:hover {
+  background-color: #091f2a;
+  color: #eae8e8;
+}
+
+/* .link {
+} */
+
+/* .link:hover {
+} */

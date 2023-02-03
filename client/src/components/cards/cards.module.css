@@ -1,0 +1,39 @@
+.containerDiv {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  /* height: 580px; */
+}
+
+/* .containerCards {
+  display: flex;
+  justify-content: center;
+  flex-direction: row;
+  flex-wrap: wrap;
+} */
+
+.containerCards {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+  justify-items: center;
+  width: 1200px;
+}
+
+.btn {
+  padding: 5px;
+  margin-top: 10px;
+  border-radius: 15px;
+  background-color: #c9d7d7;
+  border: none;
+  font-size: medium;
+  font-family: 'Josefin Sans', sans-serif;
+  margin-bottom: 20px;
+  width: 100px;
+  cursor: pointer;
+  text-align: center;
+}
+
+.btn:hover {
+  background-color: #091f2a;
+  color: #eae8e8;
+}

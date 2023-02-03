@@ -1,0 +1,41 @@
+.container {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  border-radius: 15px;
+  width: 60vw;
+  height: 90px;
+}
+
+.img {
+  display: flex;
+  /* margin-left: 30px; */
+  width: 60px;
+  height: 40px;
+  border-radius: 15px;
+}
+
+.contCard {
+  /* align-items: flex-start; */
+  justify-content: center;
+  margin-top: 20px;
+  margin: 5px;
+  /* margin-right: 1600px; */
+  width: 100px;
+}
+
+.cruz {
+  width: 25px;
+  display: flex;
+  justify-content: center;
+  color: red;
+  border: red solid 2px;
+  border-radius: 10px;
+  /* background-color: black; */
+  font-size: medium;
+  /* align-items: center; */
+}
+.cruz :hover {
+  cursor: pointer;
+  box-shadow: 0 0 2px #518185;
+}

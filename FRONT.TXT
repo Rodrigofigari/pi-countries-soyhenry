@@ -1,0 +1,41 @@
+1. ReactDom. render & Provider & BrowserRouter & App & Routes
+2. Switch para esta version de react.router.dom y para la page not found
+
+----
+
+PAGES
+1.Loggin: Import Link y lo utilizo para direccionar al home con el atributo to
+ - Creo BOTON
+ - Cargo imagen
+
+2.Error404:
+    creo div al cual le pongo como background la imgaen de 404.
+    Creo boton, importo Link y redirecciono a la landing page
+
+
+3. Home:
+-Me traigo dispatch de la libreria react-redux 
+-Quiero que al renderizarse el componente me cargue me alamacene la info de la tabla countries en el estado global all countries. Le paso como dependecia el dispatch
+
+Renderizo los componente correspondientes.
+
+4. Detail:
+-me traigo el valor que me pasaron por params con el clave indicada en la ruta
+-utilizo un useEffect para despachar la action detailID pasandole el valor de params para almacenar la info de ese pais en un estado global
+- usamos useSelector para traernos el global, desestructuramos por valores
+- a population le aplicamos toLocaleString para millares. Primero nos aseguramos que tenga valor
+
+Renderizamos los datos obtenidos del pais, mas las actividades (la ruta que obtenia el pais mediante el code (id) por params incluia la info de la s actividades asociadas al pais)
+
+5. Create:
+- importamos Link de react router dom y el componente del formulario de creacion
+- renderizamos un link oara vovler al home y el formulario
+
+-------------------------
+
+Componentes:
+1. Formulario:
+
+-Creamos dos estados internos. a) Valores del formulario b) Seteo de errores
+-
+

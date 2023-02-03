@@ -1,0 +1,28 @@
+.divContainer {
+  width: 300px;
+  display: flex;
+  justify-content: center;
+}
+
+.input,
+.btn {
+  padding: 15px;
+  margin: 5px;
+  border-radius: 15px;
+  background-color: #c9d7d7;
+  border: none;
+  font-size: large;
+  font-family: 'Josefin Sans', sans-serif;
+}
+
+.btn img {
+  width: 25px;
+}
+
+.input:hover {
+  background-color: #eae8e8;
+}
+.btn:hover {
+  background-color: #eae8e8;
+  cursor: pointer;
+}

@@ -1,0 +1,56 @@
+.containerCard {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  background-color: transparent;
+  border-radius: 15px;
+  margin: 10px;
+  width: 230px;
+  background-color: #fffbf5;
+  opacity: 0.8;
+}
+
+.containerCard:hover {
+  box-shadow: 0 0 10px #518185;
+  /* width: 160px; */
+}
+
+.img {
+  width: 160px;
+  height: 100px;
+  border-radius: 15px;
+  margin: 10px;
+}
+
+.name {
+  display: flex;
+  /* align-items: center; */
+  justify-content: center;
+  text-decoration: none;
+  color: #00142b;
+  font-size: large;
+  font-weight: 100;
+  padding: 3px;
+  width: fit-content;
+  height: 30px;
+  align-items: center;
+
+  border: transparent solid 2px;
+}
+
+.name:hover {
+  /* color: white; */
+}
+
+.name:hover {
+  /* color: #eedaed;
+  text-shadow: 1px 1px #eedaed; */
+  border: #518185 solid 2px;
+  border-radius: 15px;
+  box-shadow: 0 0 10px #518185;
+}
+
+.continent {
+  color: #00142b;
+}

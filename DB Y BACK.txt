@@ -1,0 +1,172 @@
+
+DB (PostreSQL y Sequelize)
+RUTAS (Express)
+
+.1 DB:
+ - Creamos una DB en PostgreSQL -> CREATE DATABASE "..NAME.."
+
+. SEQUELIZE:
+ - nos importamos sequelize de la libreria sequelize y creamos una nueva instancea con nuestros datos de PostgreSQL y la el nombre de la DB correspondiente
+ - Creamos funciones que definen los modelos de la db. Estas funciones recibiran la instancea creda por args y asi setearan las tablas a la db.
+ 
+ ***
+ Explicacion code archivo db.js ::
+ 
+  
+ Lo que haciamos en las HW era crear estas fn en archivos separados donde usabamos el metodo define() de sequelize para la creacion del modelo. Luego las importabamos al archivo donde teniamos la creacion de la instancea sequeliz, y por ultimo le pasabamos esa instancea a las fn y ais quedaban insertadas las tablas en la db
+
+ Al exportar db.models, estaban exportando los modelos creados.
+
+ Podemos desestructurar los modelos de "intancea.models" y utilizarlos para declarar la relacion entre las tablas.
+ ***
+
+En el PI tenemos lo siguiente::
+
+--
+const basename = path.basename(__filename);
+
+Metodo "basename" de la libreria "path" de Node.js --> toma la ruta de acceso de un archivo y solo nos devuelve el nombre del mismo con la extension --> En este caso db.js
+
+--
+fs.readdirSync(path.join(__dirname, "/models"))
+
+metoddo readdirSync de la libreria fs(file system) de Node.js -> Nos deuvelve un array con todos los archivos/carpetas que contenga el directorio pasado por args. En este caso le pasamos el metodo path.join que une, la ruta del directorio donde estamos "/src" + "/models" -> Como resultado obtenemos todos un array con los archivos que tenga el directorio /models
+
+Luego hace una verificacion de que sean los archivos correctos con un filter. Verifica que los archivos no comiencen con un putno, que el nombre sea distinto a db.js y que la extension sea ".js"
+
+Con el forEach recorre el array con los archivos de models y los pushea al array modelDefiners. (ruta "/src" + "/models" + archivo)
+
+Por que utiliza el require si ya habia importado la libreria PATH ??
+
+---
+modelDefiners.forEach((model) => model(sequelize));
+
+Pasmos la instancea de sequelize a las funciones creadoras de los modelos Q: Pero el array no tenia las rutas de acceso a esos archivos? Como es que ahora accedemos a la funcion? 
+
+---
+let entries = Object.entries(sequelize.models);
+let capsEntries = entries.map((entry) => [
+  entry[0][0].toUpperCase() + entry[0].slice(1),
+  entry[1],
+]);
+sequelize.models = Object.fromEntries(capsEntries);
+
+// devuelve array con pares de clave: valor de los modelos
+// Nos devuelve el array con los modelos como objetos pero con La mayuscula aplicada
+// Convierte el arreglo en un objeto con clave valor -> Nombre del metodo : fn()
+
+Resultado =  Ponemos mayusculas a los modelos
+
+--------------------------------------------------
+
+2. Back End - Express
+
+- importamos Express de la libreria Ezpress y creamos el server > server = express()
+
+- importamos middlewares:
+ -- bodyParser : nos permite manejar los datos enviados por body de las querys HTTP. Convierte los obj JSON a JS. 
+ -- morgan: nos muestra la peticion que se hizo con ciertos datos
+
+- Creamos los middlewares para las rutas de nuestro servidor
+
+---
+server.use((req, res, next) => {
+  res.header("Access-Control-Allow-Origin", "http://localhost:3000"); // update to match the domain you will make the request from
+  res.header("Access-Control-Allow-Credentials", "true");
+  res.header(
+    "Access-Control-Allow-Headers",
+    "Origin, X-Requested-With, Content-Type, Accept"
+  );
+  res.header("Access-Control-Allow-Methods", "GET, POST, OPTIONS, PUT, DELETE");
+  next();
+});
+
+La última sección de código agrega un middleware personalizado que agrega encabezados a las respuestas HTTP. 
+Estos encabezados especifican la política de acceso a los recursos y permiten que el navegador permita o bloquee la solicitud. 
+La línea res.header("Access-Control-Allow-Origin", "http://localhost:3000") establece el origen permitido para las solicitudes (en este caso, http://localhost:3000). 
+La línea res.header("Access-Control-Allow-Credentials", "true") permite que las credenciales (como las cookies) se incluyan en la solicitud. 
+La línea res.header("Access-Control-Allow-Headers", ...) establece los encabezados permitidos en la solicitud. 
+La línea res.header("Access-Control-Allow-Methods", ...) establece los métodos HTTP permitidos en la solicitud. 
+Finalmente, la línea next() permite que el control pase al siguiente middleware o manejador de ruta en la cadena.
+
+---
+server.use((err, req, res, next) => {
+  // eslint-disable-line no-unused-vars
+  const status = err.status || 500;
+  const message = err.message || err;
+  console.error(err);
+  res.status(status).send(message);
+});
+
+Este middleware es definido por nosotros.
+
+Es llamado cuando ocurre un error en el servidor durante el procesamiento de una solicitud.
+
+El código asigna el valor err.status o 500 a la variable status, lo que representa el código de estado HTTP a enviar en la respuesta. Si err.message no está definido, la variable message es igual a err (el objeto de error). Luego, se imprime el objeto de error en la consola (console.error(err)) y se envía una respuesta con el código de estado HTTP y el mensaje especificados. Esto permite que los errores en el servidor se manejen y se informen de manera adecuada al cliente.
+
+--------------------------
+
+3. INDEX > Sincronizacion de la db y escucha del server
+
+SyncDB:
+Al ejecutar npm start sinconizamos la db. Utilizamos el force en false ya que tenemos una funcion autoinvocada que pregunta si la db tiene algo, de no tener le pega a la api web y llena la db con esa info.
+
+La primera vez que se ejecuta la db estara vacia por ende la llenara. Las otras veces que quiera ejecutarla no podra ya que la db tendra info y por ende no le pegara a la api web
+
+ListenServer:
+Con el metodo listen le asignamos un puerto al server para que escuche, en este caso es el puerto 3000 del localhost
+
+
+----------------------------
+
+Modelos : Datatypes, eliminacion de columnas (creacion y actualizacion) , validation para rango numerico en difficulty, y toLocalString para poner puntuacion de millares al atributo area
+
+----------------------------
+
+RUTAS (Express)
+
+Activities: 
+1. Post (creacion de actividad)
+2. Get (obtencion de todas las actividades)
+
+1: - Hago un try catch donde intento ejecutar la fn postActivity, la cual recibe el objeto del body con la act a crear y los paises asociados.
+- desestructuramos
+- al array de paies lo ponemos en mayuscula como viene de la api web
+- creamos la activiad y asociamos la act con los paises mediante l metodo addCountries 
+
+add... Es un metodo que nos proporciona sequelize para poder una o varias entidades relacionadas a una entidad existente en una relación de muchos a muchos.
+
+200: En caso de creacion exitosa manda msj correspondiente
+404: En caos de que la act ya exista, devuelve msj correspondiente 
+
+2:
+- Hago un try catch donde intento ejecutar getActivites() 
+- Me traigo todas las actividades con toda su info correspondiente. Ademas, le iccluyo los paises que tengan asociadas la act 
+- el through con [] es para que no me traiga los atributos de la tabla intermedia
+
+200: Devuelvo actividades
+404: devuelvo error
+ 
+----------------
+
+Countries:
+
+1. fn que carga la DB -- Force:false
+- Hace un find all a la tabla country, para ver si tiene algo. Este devuelve un array. En caso de que no tenga elemntos, ejecuta insertInfoInDB ()
+- insertInfoDb le pega a la api web, se trae toda la data. Mapea ese arreglo haciendo uno nuevo con los datos necesarios
+- utiliza el metodo bulkCreate, el cuar nos permite insertar registros en masa en una tabla
+
+2.get Todos || query :
+- Verifica si tiene query o no, de tenerlo ejecuta getByParams. 
+- Es una fn asincrona que recibe un string. Ejecuta el metodo findAll sobre el modelo country y le pasa como constrain que el atriuto name de cada registro incluya el string recibido por params
+- Devuelve los paises que coincidan || devuelve "Pais cno encontrado"
+
+- En caso de no tener query, ejecuta getFindAll(), fn que trae todos los registros del modelo Country
+- Devuelve el array de todos los paises o el error correspondiente
+
+3.get Params (ID)
+- obtiene el valor con uns destructuracion del objeto req.params
+- intenta ejecutar de manera asincrona la fn getByid(valor) 
+- Esta fn es asincrona y busca por id (primaryKey de Country)
+- Toma el registro correspondiete y le incluye la informacion de las actividades vinculadas al pais. anulla la info de la tabla intermedia
+- Devuelve el pais correspondiente o de no encontrarlo el msj "Pais no encontrado"

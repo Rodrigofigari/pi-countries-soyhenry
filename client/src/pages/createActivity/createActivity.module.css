@@ -1,0 +1,25 @@
+.btn {
+  padding: 12px;
+  margin-top: 20px;
+  border-radius: 15px;
+  background-color: #fffbf5;
+  font-size: medium;
+  font-family: "Josefin Sans", sans-serif;
+  cursor: pointer;
+  text-decoration: none;
+  color: #091f2a;
+}
+
+.btn:hover {
+  background-color: #cfb997;
+  /* color: #eae8e8; */
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+  /* height: 100vh; */
+  /* justify-content: center; */
+}

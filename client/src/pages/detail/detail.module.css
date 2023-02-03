@@ -1,0 +1,55 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.contActivities {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  width: 50%;
+  box-shadow: 0 0 10px #fffbf5;
+  border-radius: 15px;
+  text-align: center;
+
+  background-color: #fffbf5;
+  opacity: 0.8;
+}
+
+.contCard {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  box-shadow: 0 0 10px #fffbf5;
+  border-radius: 15px;
+  margin: 10px;
+  width: 400px;
+  height: 600px;
+  background-color: #fffbf5;
+  opacity: 0.8;
+}
+
+.img {
+  margin-top: 20px;
+  width: 300px;
+  height: 150px;
+  border-radius: 15px;
+}
+
+.btn {
+  padding: 8px;
+  margin-top: 10px;
+  border-radius: 15px;
+  background-color: #fffbf5;
+  font-size: medium;
+  font-family: "Josefin Sans", sans-serif;
+  cursor: pointer;
+  text-decoration: none;
+  color: #091f2a;
+}
+
+.btn:hover {
+  background-color: #cfb997;
+  /* color: #eae8e8; */
+}

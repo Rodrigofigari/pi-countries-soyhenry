@@ -1,0 +1,43 @@
+/* body {
+  margin-bottom: 0;
+  background-color: #666666;
+  background-image: url('../../imgs/fondo\ pexels.jpg');
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  height: 100vh;
+} */
+
+.container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.btn {
+  position: absolute;
+  top: 50%;
+  height: 100px;
+  width: 200px;
+  background-color: #43323d;
+  border-radius: 30px;
+  border: #e2e2e2 solid 2px;
+  font-family: 'Josefin Sans', sans-serif;
+  font-size: x-large;
+}
+
+.btn:hover {
+  /* background-color: #e2e2e2; */
+  /* border-color: #43323d; */
+  box-shadow: 0 0 50px #43323d;
+}
+
+.link {
+  color: #e2e2e2;
+  text-decoration: none;
+}
+
+/* .img {
+  width: 400px;
+  margin-top: 80px;
+} */

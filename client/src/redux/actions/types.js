@@ -1,0 +1,16 @@
+export const GET_COUNTRIES = 'GET_COUNTRIES';
+export const COUNTRIES_RENDER = 'COUNTRIES_RENDER';
+
+export const FILTER_CONTINENTS = 'FILTER_CONTINENTS';
+export const FILTER_ACTIVITIES = 'FILTER_ACTIVITIES';
+
+export const SEARCH_BY_NAME = 'SEARCH_BY_NAME';
+export const ALL = 'ALL';
+
+export const GET_ACTIVITIES = 'GET_ACTIVITIES';
+
+export const CURRENT_PAGE = 'CURRENT_PAGE';
+export const ORDER_COUNTRY = 'ORDER_COUNTRY';
+export const ORDER_POPULATION = 'ORDER_POPULATION';
+
+export const DETAIL_ID = 'DETAIL_ID';
