@@ -5,7 +5,9 @@
 }
 
 .divCards {
-  height: 580px;
+  height: 700px;
+  margin-bottom: 55px;
+
   /* width: 100vw; */
   /* border: lightseagreen solid 2px; */
 }

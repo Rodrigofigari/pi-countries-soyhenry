@@ -29,6 +29,7 @@ const Cards = () => {
             imgFlag={ele.imgFlag}
             name={ele.name}
             continent={ele.continent}
+            population={ele.population}
           />
         ))}
       </div>

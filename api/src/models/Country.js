@@ -9,7 +9,7 @@ module.exports = (sequelize) => {
       id: {
         type: DataTypes.STRING(3),
         primaryKey: true,
-        lowercase: true, // va guardar el codigo en minuscula
+        // lowercase: true,
       },
       name: {
         // type: DataTypes.ARRAY(STRING), >> Intente traerme los name en ingles y espaol para que se ppueda buscar de ambas maneras, se rompio por un map interno de sequelize!

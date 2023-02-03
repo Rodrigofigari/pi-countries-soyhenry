@@ -1,29 +1,29 @@
-import style from "./form.module.css";
+import style from './form.module.css';
 
-import React, { useEffect, useState } from "react";
-import { useSelector, useDispatch } from "react-redux";
+import React, { useEffect, useState } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 
-import validation from "./validation";
-import Flags from "./cardsCA/flags";
-import postDB from "./post";
+import validation from './validation';
+import Flags from './cardsCA/flags';
+import postDB from './post';
 
-import { getCountries } from "../../../redux/actions/actions";
+import { getCountries } from '../../../redux/actions/actions';
 
 function Form() {
   const [form, setForm] = useState({
-    name: "",
-    difficulty: "",
-    time: "",
-    season: "",
+    name: '',
+    difficulty: '',
+    time: '',
+    season: '',
     countries: [],
   });
 
   const [errors, setErrors] = useState({
-    name: "",
-    difficulty: "",
-    time: "",
-    season: "",
-    countries: "",
+    name: '',
+    difficulty: '',
+    time: '',
+    season: '',
+    countries: '',
   });
 
   const dispatch = useDispatch();
@@ -37,7 +37,7 @@ function Form() {
   const handleChange = (event) => {
     const { name, value } = event.target;
     setForm((prevForm) => {
-      if (name === "countries") {
+      if (name === 'countries') {
         return !prevForm.countries.includes(value)
           ? { ...prevForm, countries: [...prevForm.countries, value] }
           : prevForm;
@@ -56,8 +56,8 @@ function Form() {
   useEffect(() => {
     setErrors(validation(form));
   }, [form]);
-  console.log("errors", errors);
-  console.log("form", form);
+  console.log('errors', errors);
+  console.log('form', form);
 
   const handlerSubmit = (event) => {
     const errorsValidation = validation(form);
@@ -65,7 +65,7 @@ function Form() {
 
     let hasErrors = false;
     for (let error in errorsValidation) {
-      if (errorsValidation[error] !== "") {
+      if (errorsValidation[error] !== '') {
         hasErrors = true;
         break;
       }
@@ -76,6 +76,13 @@ function Form() {
         try {
           const result = await postDB(form);
           alert(result.data);
+          setForm({
+            name: '',
+            difficulty: '',
+            time: '',
+            season: '',
+            countries: [],
+          });
         } catch (error) {
           alert(error.response.data);
         }

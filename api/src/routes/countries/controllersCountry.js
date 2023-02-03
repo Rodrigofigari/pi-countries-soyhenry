@@ -61,6 +61,22 @@ const getById = async (id) => {
   return country;
 };
 
+// const getByid2 = (id) => {
+//   id = id.toUpperCase()
+//   return Country.findByPk(id, {
+//     include: [
+//       {
+//         model: Activity,
+//         attributes: ['name'],
+//         through: {
+//           attributes: [],
+//         },
+//       },
+//     ],
+//   })
+//   .then(result => {return result})
+// }
+
 // Busca por params, name que contenga el string
 const getByParams = async (name) => {
   const response = await Country.findAll({
