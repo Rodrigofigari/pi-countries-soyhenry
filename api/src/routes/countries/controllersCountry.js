@@ -41,7 +41,7 @@ const insertInfoInDB = async () => {
 //     };
 //   }))
 //   .then(countries => Country.bulkCreate(countries))
-//   .catch(error => console.log(error.message))
+//   .catch(error => return(error.message))
 // }
 
 // Busca por primary key CODE

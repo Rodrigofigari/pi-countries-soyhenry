@@ -56,18 +56,3 @@ const Pages = ({ allCountries, countriesXpage, selectPage, currentPage }) => {
 };
 
 export default Pages;
-
-// import { useDispatch } from 'react-redux';
-// import { countriesRender } from '../../../redux/actions/actions';
-
-// const Wrapper = ({ data }) => {
-//   const dispatch = useDispatch();
-
-//   useEffect(() => {
-//     dispatch(countriesRender(data));
-//   });
-
-//   return <div></div>;
-// };
-
-// export default Wrapper;

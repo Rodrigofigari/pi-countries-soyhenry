@@ -14,7 +14,7 @@ const postActivity = async (objeto) => {
     season,
   });
 
-  await newActivity.addCountries(countries);
+  await newActivity.addCountries(countries); // vinculamos por primary key >> Id >> CODE
   return newActivity;
 };
 
