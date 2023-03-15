@@ -14,13 +14,15 @@
 - Aprender y practicar el workflow de GIT.
 - Usar y practicar testing.
 
-La idea general es crear una aplicación en la cual se pueda ver información de  distintos paises utilizando la api externa [restcountries](https://restcountries.com/) y a partir de ella poder, entre otras cosas:
+ ## Idea general del proyecto: 
+ Crear una aplicación en la cual se pueda ver información de  distintos paises utilizando la api externa [restcountries](https://restcountries.com/) y a partir de ella poder, entre otras cosas:
 
 - Buscar paises
 - Filtrarlos / Ordenarlos
 - Crear actividades turísticas
 
- Atención ☢️ 
+
+## Atención ☢️ 
  1. Forkear el repositorio para tener una copia del mismo en sus cuentas
  2. Clonar el repositorio en sus computadoras para comenzar a trabajar
 
@@ -49,7 +51,7 @@ __ACLARACIÓN:__ Las dependencias actuales se encuentran en las versiones:
 
 > __IMPORTANTE:__ Versiones mas actuales podrían presentar configuraciones diferentes respecto a las versiones en las que venimos trabajando durante el bootcamp.
 
-
+## Base de Datos
 En `api` crear un archivo llamado: `.env` que tenga la siguiente forma:
 
 ```env
@@ -62,7 +64,7 @@ Reemplazar `usuariodepostgres` y `passwordDePostgres` con tus propias credencial
 
 Adicionalmente será necesario que creen desde psql una base de datos llamada `countries`
 
-
+## Front
 El contenido de `client` fue creado usando: Create React App.
 Estilos: CSS puro
 
