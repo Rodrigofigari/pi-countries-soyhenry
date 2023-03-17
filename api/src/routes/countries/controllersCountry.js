@@ -91,17 +91,7 @@ const getByParams = async (name) => {
 
 // Busca todos, findAll
 const getFindAll = async () => {
-  const response = await Country.findAll({
-    // include: [
-    //   {
-    //     model: Activity,
-    //     attributes: ['name'],
-    //     through: {
-    //       attributes: [],
-    //     },
-    //   },
-    // ],
-  });
+  const response = await Country.findAll();
   return response;
 };
 
