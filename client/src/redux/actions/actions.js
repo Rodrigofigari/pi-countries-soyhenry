@@ -16,11 +16,12 @@ import axios from 'axios';
 
 export const getCountries = () => {
   // esta segunda funcion llegara al thunk quien se encarga de hacer las peticiones. La action no puede hacer una peticion, pero si puede retornar una funcion para que el thunk la recibda y ahaga la peticio
-  return function (dispatch) {
-    fetch('http://localhost:3001/countries')
-      .then((res) => res.json())
-      .then((data) => dispatch({ type: GET_COUNTRIES, payload: data })) // el reducer recibe la action igual que siemore y no sabe de todo lo anterior
-      .catch((error) => console.log(error));
+  return async function (dispatch) {
+    const result = await axios.get('countries');
+    return dispatch({ type: GET_COUNTRIES, payload: result.data });
+    // .then((res) => res.data.json())
+    // .then((data) => dispatch({ type: GET_COUNTRIES, payload: data })) // el reducer recibe la action igual que siemore y no sabe de todo lo anterior
+    // .catch((error) => console.log(error));
   };
 };
 
@@ -38,7 +39,7 @@ export const filterContinent = (continent) => {
 
 export const detailId = (id) => {
   return async function (dispatch) {
-    const result = await axios.get(`http://localhost:3001/countries/${id}`);
+    const result = await axios.get(`countries/${id}`);
     return dispatch({ type: DETAIL_ID, payload: result.data });
   };
 };
@@ -54,9 +55,7 @@ export const orderByPopulation = (order) => {
 // Atajo el error en el searchBar
 export const searchByName = (name) => {
   return async function (dispatch) {
-    const result = await axios.get(
-      `http://localhost:3001/countries?name=${name}`
-    );
+    const result = await axios.get(`/countries?name=${name}`);
     return dispatch({ type: SEARCH_BY_NAME, payload: result.data });
   };
 };
@@ -72,7 +71,7 @@ export const filterActivity = (activity) => {
 export const getActivities = () => {
   return async function (dispatch) {
     try {
-      const result = await axios.get('http://localhost:3001/activities');
+      const result = await axios.get('/activities');
       return dispatch({ type: GET_ACTIVITIES, payload: result.data });
     } catch (error) {
       return error;
@@ -84,7 +83,7 @@ export const getActivities = () => {
 //   return async function (dispatch) {
 //     try {
 //       const result = await axios.get(
-//         `http://localhost:3001/countries?name=${name}`
+//         `/countries?name=${name}`
 //       );
 //       return dispatch({ type: SEARCH_BY_NAME, payload: result.data });
 //     } catch (error) {
