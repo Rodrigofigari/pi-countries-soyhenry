@@ -8,6 +8,6 @@ export default async function postDB(obj) {
     season: obj.season,
     countries: obj.countries,
   };
-  const result = await axios.post('http://localhost:3001/activities', body);
+  const result = await axios.post('activities', body);
   return result;
 }

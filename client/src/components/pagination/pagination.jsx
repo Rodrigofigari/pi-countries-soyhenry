@@ -21,10 +21,7 @@ const Pagination = () => {
     indexLastCountryXpage
   );
 
-  console.log('currentPage', currentPage);
-
   const firstPage = allCountries.slice(0, 9);
-  // console.log("firstPage", firstPage);
 
   const selectPage = (numPage) => {
     dispatch(stateCurrentPage(numPage));
