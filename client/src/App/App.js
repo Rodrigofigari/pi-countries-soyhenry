@@ -9,7 +9,8 @@ import Detail from '../pages/detail/detail';
 import createActiviy from '../pages/createActivity/createActivity';
 import Error404 from '../pages/Error404/404';
 import axios from 'axios';
-axios.defaults.baseURL = 'http://localhost:3001/';
+axios.defaults.baseURL =
+  'https://pi-countries-soyhenry-production.up.railway.app/'; // 'http://localhost:3001'
 
 function App() {
   return (
