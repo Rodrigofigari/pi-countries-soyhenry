@@ -1,4 +1,5 @@
 const { Router } = require('express');
+const axios = require('axios');
 const { Country } = require('../../db.js');
 
 const {
@@ -10,39 +11,39 @@ const {
 
 const router = Router();
 
+/*
 (async function validationDB() {
   const db = await Country.findAll();
   !db.length ? insertInfoInDB() : null;
-})();
+})();*/
 
-// function validationDB() {
-//   return Country.findAll()
-//   .then(db => {
-//      if (!db.length) {
-//        return insertInfoInDB();
-//      }
-//   })
-//   .then(() => {
-//      console.log("DB validation completed");
-//   })
-//   .catch(err => {
-//      console.error(err);
-//   });
-// }
+// router.get('/axios', async (req, res) => {
+//   const result = await axios.get('https://restcountries.com/v3/all');
+//   console.log('result', result.data);
+//   res.send(result.data);
+// });
 
-//   validationDB();
+router.get('/dbfull', async (req, res) => {
+  console.log('hola');
+  try {
+    await insertInfoInDB();
+    console.log('insertinfodb', insertInfoInDB);
+    res.status(200).send('Db llena');
+  } catch (error) {
+    res.status(400).send(error);
+  }
+});
 
 router.get('/', async (req, res) => {
   const { name } = req.query;
   if (name) {
-    // puedo sacar el primer 404 y dejar que el catch actue
     try {
       const response = await getByParams(name);
       response.length
         ? res.status(200).json(response)
         : res.status(404).json('Country not found ❌');
     } catch (error) {
-      return res.status(404).json({ error: error.message }); // El cath agarra el error devuelto en el try
+      return res.status(404).json({ error: error.message });
     }
   } else {
     try {
@@ -53,6 +54,24 @@ router.get('/', async (req, res) => {
     }
   }
 });
+
+// Lo mismo aca con el catch
+router.get('/:idPais', async (req, res) => {
+  const { idPais } = req.params;
+
+  try {
+    const response = await getById(idPais);
+    response
+      ? res.status(200).json(response)
+      : res
+          .status(404)
+          .json({ error: `Country not found whit code ${idPais}` });
+  } catch (error) {
+    res.status(404).json({ error: error.message });
+  }
+});
+
+module.exports = router;
 
 // router.get('/', async (req, res) => {
 //   const { name } = req.query;
@@ -76,21 +95,3 @@ router.get('/', async (req, res) => {
 //   }
 // }
 // })
-
-// Lo mismo aca con el catch
-router.get('/:idPais', async (req, res) => {
-  const { idPais } = req.params;
-
-  try {
-    const response = await getById(idPais);
-    response
-      ? res.status(200).json(response)
-      : res
-          .status(404)
-          .json({ error: `Country not found whit code ${idPais}` });
-  } catch (error) {
-    res.status(404).json({ error: error.message });
-  }
-});
-
-module.exports = router;

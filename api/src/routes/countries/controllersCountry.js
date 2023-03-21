@@ -11,7 +11,6 @@ const insertInfoInDB = async () => {
   const newResult = result.map((c) => {
     return {
       id: c.cca3,
-      // name: [c.translations.spa.common, c.name.common], Tener español e ingles
       name: c.name.common,
       imgFlag: c.flags[0],
       continent: c.continents[0],
@@ -24,25 +23,6 @@ const insertInfoInDB = async () => {
 
   await Country.bulkCreate(newResult);
 };
-
-// const fn = () => {
-//   fetch('https://restcountries.com/v3/all').data
-//   .then(result => result.map((c) => {
-//     return {
-//       id: c.cca3,
-//       // name: [c.translations.spa.common, c.name.common],
-//       name: c.name.common,
-//       imgFlag: c.flags[0],
-//       continent: c.continents[0],
-//       capital: c.capital ? c.capital[0] : 'Capital not found',
-//       subregion: c.subregion ? c.subregion : 'Subregion not found',
-//       area: c.area,
-//       population: c.population,
-//     };
-//   }))
-//   .then(countries => Country.bulkCreate(countries))
-//   .catch(error => return(error.message))
-// }
 
 // Busca por primary key CODE
 const getById = async (id) => {
@@ -60,22 +40,6 @@ const getById = async (id) => {
   });
   return country;
 };
-
-// const getByid2 = (id) => {
-//   id = id.toUpperCase()
-//   return Country.findByPk(id, {
-//     include: [
-//       {
-//         model: Activity,
-//         attributes: ['name'],
-//         through: {
-//           attributes: [],
-//         },
-//       },
-//     ],
-//   })
-//   .then(result => {return result})
-// }
 
 // Busca por params, name que contenga el string
 const getByParams = async (name) => {

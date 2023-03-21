@@ -45,11 +45,8 @@ sequelize.models = Object.fromEntries(capsEntries);
 // Para relacionarlos hacemos un (destructuring
 
 const { Activity, Country } = sequelize.models;
+console.log(sequelize.models);
 
-// Aca vendrian las relaciones
-// Product.hasMany(Reviews);
-// hasMany : tiene muchos
-// belongs to : pertenece a
 Country.belongsToMany(Activity, { through: 'Activities_Countries' });
 Activity.belongsToMany(Country, { through: 'Activities_Countries' });
 
