@@ -56,8 +56,6 @@ function Form() {
   useEffect(() => {
     setErrors(validation(form));
   }, [form]);
-  console.log('errors', errors);
-  console.log('form', form);
 
   const handlerSubmit = (event) => {
     const errorsValidation = validation(form);
@@ -75,6 +73,7 @@ function Form() {
       async function postData() {
         try {
           const result = await postDB(form);
+          console.log('result', result);
           alert(result.data);
           setForm({
             name: '',
